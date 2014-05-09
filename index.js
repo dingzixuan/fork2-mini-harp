@@ -11,6 +11,7 @@ function createMiniHarp(root) {
   //connect中间件流
   app.use(require("serve-static")(root));
   app.use(require("./lib/processor/jade.js")(root));
+  app.use(require("./lib/processor/less.js")(root));
   app.use(function(req, res, next) {
     if(req.url == "/current-time") {
       res.statusCode = 200;
