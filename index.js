@@ -1,17 +1,17 @@
 var connect = require("connect");
-var serveStatic = require("serve-static");
 var app = connect();
 
-function createMiniHarp(port, root) {
-  if (!port) {
+function createMiniHarp(root) {
+  //if (!port) {
     port = 4000;    
-  }
+  //}
   if (!root) {
     root = process.cwd();
   }
-  app.use(serveStatic(root));
+  //connect中间件流
+  app.use(require("serve-static")(root));
+  app.use(require("./lib/processor/jade.js")(root));
   app.use(function(req, res, next) {
-    //console.log(req.url);
     if(req.url == "/current-time") {
       res.statusCode = 200;
       res.setHeader("Content-Type", "text/plain");
