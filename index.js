@@ -10,6 +10,7 @@ function createMiniHarp(root) {
   }
   //connect中间件流
   app.use(require("./lib/processor/rewrite.js")());
+  app.use(require("./lib/processor/reject.js")());
   app.use(require("serve-static")(root));
   app.use(require("./lib/processor/jade.js")(root));
   app.use(require("./lib/processor/less.js")(root));
